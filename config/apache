@@ -1,0 +1,46 @@
+Listen 4046
+<VirtualHost *:4046>
+	ServerAdmin admin@DMS
+	 
+	DocumentRoot /var/www/DMS/
+	<Directory /var/www/DMS/>
+		Options FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+	
+	ScriptAlias /bin/ /var/www/DMS/cgi/
+	<Directory /var/www/DMS/cgi/>
+		AllowOverride None
+		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	SSLEngine on
+	SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
+	SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+</VirtualHost>
+
+Listen 4045
+<VirtualHost *:4045>
+	ServerAdmin admin@DMS
+	 
+	DocumentRoot /var/www/DMS/
+	<Directory /var/www/DMS/>
+		Options FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+	
+	ScriptAlias /bin/ /var/www/DMS/cgi/
+	<Directory /var/www/DMS/cgi/>
+		AllowOverride None
+		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+</VirtualHost>

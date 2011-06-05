@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "Content-type: text/html"
+echo "Content-Encoding: none"
+echo ""
+
+echo "NS-Lookup:"
+echo ""
+
+nslookup $QUERY_STRING 

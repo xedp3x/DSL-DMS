@@ -1,0 +1,93 @@
+###############################################################################
+## Fancy Speed Test - Easily measure your upload and download speeds
+## Home Page:   http://www.brandonchecketts.com/speedtest/
+## Author:      Brandon Checketts
+## File:        INSTALL
+## Version:     1.1
+## Date:        2006-02-06
+## Purpose:     Installation Instructions
+###############################################################################
+
+INSTALLATION INSTRUCTIONS
+
+1- Download speedtest.tar.gz or speedtest.zip from 
+   http://www.brandonchecketts.com/speedtest/
+
+2- Extract the contents of the archive 
+
+3- Customize speedtest.cfg with your settings.  The comments throughout the
+   file should help explain all of the settings.  At a very minimum you need
+   to configure the base_url, upload_url, and image_path settings
+
+4- Customize the .html files as you would like (optional):
+    header.html     - Customized "header" that you can have displayed on each
+                      page.  The contents of this file are displayed before
+                      any output from the speed test scripts 
+    footer.html     - Customized "footer" that will be displayed on each page
+    welcome.html    - Displayed if auto_start is off when you go to index.php
+    unallowed.html  - Page that is displayed if the user is not allowed to
+                      use the speedtest
+    style.css       - Basic style sheet - customize as needed
+
+5- Upload all of the files to a directory on you web site
+
+6- NOTE: upload.cgi is a Perl script that needs to be put in a directory 
+   that allows CGI's to be executed.   The process for this will depend on
+   your hosting provider.  In the best case scenario, you can add the
+   following to a .htaccess file in your directory:
+   
+   Options ExecCGI
+    
+   If this is not allowed or does not work, then most hosts provide a
+   /cgi-bin/ directory that you should be able to use.  You will need to
+   modify the $config_file variable inside upload.cgi to point to the correct
+   directory where your speedtest.cfg is stored.
+
+   upload.cgi also relies on the Time::HiRes perl module in order to make
+   a precise measurement of the time that it takes to upload the content.
+   If you get an Internal Server Error (HTTP 500 Error) when trying to use
+   upload.cgi, then you may not have Time::HiRes installed.  Check your apache
+   error log file for more detailed information.  If Time::HiRes is not
+   installed you should install it yourself.   If you are on a managed hosting
+   account, you may need to have your hosting provider install it for you.
+    
+   If you can't get upload.cgi to work correctly, then you can set skip_upload
+   to 1 in the [upload] section of speedtest.cfg
+
+7- If you plan on saving results to a databae, you will need to include the
+   necessary fields in the [database] section of the config file.  You will 
+   also need to create the database table for the results to be saved in.
+
+   You can use the following SQL to create a table named "speedtest"
+
+        CREATE TABLE `speedtest` (
+        `id` int(10) unsigned NOT NULL auto_increment,
+        `ip` int(11) NOT NULL default '0',
+        `ip_string` varchar(15) NOT NULL default '',
+        `timestamp` datetime NOT NULL default '0000-00-00 00:00:00',
+        `downspeed` varchar(15) NOT NULL default '',
+        `upspeed` varchar(15) NOT NULL default '',
+        PRIMARY KEY  (`id`)
+        ) ;
+    
+   No interface is provided in order to view the results.  I'm assuming that
+   if you have a need to view the results, they you are probably in charge
+   of a server or network and should know how to do this.
+
+8- That should be it.  Please check http://www.brandonchecketts.com/speedtest/
+   for the latest news and additional troubleshooting steps
+
+
+SECURITY WARNING:
+    The speedtest.cfg file is a plain text file that could potentially be 
+    viewed through your web server.   Since this file may contain a database
+    username and password, it's important that visitors not be able to read it.
+    You should put the following inside a .htaccess file in your directory.
+
+    <Files *.cfg>
+        Deny From All
+    </files>
+   
+    Then try to read http://www.yoursite.com/speedtest/speedtest.cfg
+    and make sure you can't read it.
+

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "Content-type: text/html"
+echo "Content-Encoding: none"
+echo ""
+
+echo "Ping:"
+echo ""
+
+ping -c 5 -i 1 $QUERY_STRING 

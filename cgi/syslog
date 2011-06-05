@@ -1,0 +1,15 @@
+#!/bin/sh
+echo "Content-type: text/html"
+echo "Content-Encoding: none"
+echo ""
+
+tail -f -n 30 /var/log/syslog &
+myPID=$!
+sleep 5m
+kill ${myPID}
+
+echo ""
+echo ""
+echo "+---------------------+"
+echo "! Logs wurden beendet !"
+echo "+---------------------+"

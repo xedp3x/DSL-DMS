@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "Content-type: text/html"
+echo "Content-Encoding: none"
+echo ""
+
+echo $QUERY_STRING 

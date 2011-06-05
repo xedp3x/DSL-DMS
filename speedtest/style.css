@@ -1,0 +1,19 @@
+body {
+    background-color: white;
+    font-family: arial,verdana;
+}
+
+#speedtest_contents {
+    text-align: center;
+}
+
+#speedtest_credits {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+a.start_test {
+    text-decoration: none;
+}
+

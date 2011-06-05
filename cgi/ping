@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "Content-type: text/html"
+echo "Content-Encoding: none"
+echo ""
+
+echo "Ping:"
+echo ""
+
+ping -c 30 -i 0.2 $QUERY_STRING 
+
+echo "Bei grosser Verlusterate bitte Ping-Slow nutzen"
